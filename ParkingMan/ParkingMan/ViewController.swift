@@ -17,7 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         title = "List of Auburn Spots"
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        AuburnImport.get()
+        AuburnImport.get(self.view)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,23 +40,25 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     override func viewWillAppear(animated: Bool) {
         println("ViewWillAppear")
+        refreshdata()
+    }
+    
+    func reload(){
+        refreshdata()
+        tableView.reloadData()
+        }
+    
+    func refreshdata(){
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        
         let managedContext = appDelegate.managedObjectContext!
-        
         let fetchrequest = NSFetchRequest(entityName: "CityOfAuburn")
-        
         var error: NSError?
-        
         let fetchedResults = managedContext.executeFetchRequest(fetchrequest, error: &error) as [CityOfAuburn]?
-        
         if let results = fetchedResults {
             println(results.count)
             spots = results
-            self.tableView.reloadData()
         }
     }
-
-
+    
 }
 

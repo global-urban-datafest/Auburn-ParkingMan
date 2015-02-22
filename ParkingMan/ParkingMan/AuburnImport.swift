@@ -12,18 +12,19 @@ import UIKit
 @objc(CityOfAuburn)
 
 class AuburnImport: NSObject{
-    class func get(){
+    
+    class func get(view: UIView){
         let urlPath: String = "http://www.auburnalabama.org/odata/ventek/stall"
         var url: NSURL = NSURL(string: urlPath)!
         var request: NSURLRequest = NSURLRequest(URL: url)
         let queue:NSOperationQueue = NSOperationQueue()
         NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             var err: NSError
-            AuburnImport.CoreDataImport(data)
+            AuburnImport.CoreDataImport(data, view: view)
         })
     }
     
-    class func CoreDataImport(data: NSData){
+    class func CoreDataImport(data: NSData, view: UIView){
         let auburnJSON = JSON(data: data)
         
         let dateFormatter = NSDateFormatter()
@@ -33,8 +34,16 @@ class AuburnImport: NSObject{
         let managedContext = appDelegate.managedObjectContext!
         
         for (index:String, subJson:JSON) in auburnJSON["value"]{
-            // Create a new object of type CityOfAuburn
-            let spot: CityOfAuburn = NSEntityDescription.insertNewObjectForEntityForName("CityOfAuburn", inManagedObjectContext: managedContext) as CityOfAuburn
+            var spot: CityOfAuburn!
+            let fetchRequest = NSFetchRequest(entityName: "CityOfAuburn")
+            let predicate = NSPredicate(format: "stallnumber == %i", subJson["StallNumber"].int!)
+            fetchRequest.predicate = predicate
+            let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil)!
+            if (!fetchResults.isEmpty){
+                spot = fetchResults[0] as CityOfAuburn
+            } else {
+                spot = NSEntityDescription.insertNewObjectForEntityForName("CityOfAuburn", inManagedObjectContext: managedContext) as CityOfAuburn
+            }
             
             // Import the Data
             spot.id = subJson["ID"].int!
@@ -47,7 +56,13 @@ class AuburnImport: NSObject{
             spot.x_coord = subJson["X_Coord"].doubleValue
             spot.y_coord = subJson["Y_Corrd"].doubleValue
             spot.stalltype = subJson["StallType"].string!
+            
         }
+        dispatch_async(dispatch_get_main_queue(), {
+            view.setNeedsLayout()
+            println("reload")
+        })
+        
         var error: NSError?
         if !managedContext.save(&error) {
             println("Could not save \(error), \(error?.userInfo)")
