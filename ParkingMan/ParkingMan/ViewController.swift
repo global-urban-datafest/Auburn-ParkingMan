@@ -18,42 +18,18 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Location of smart parking deck
+        // Setup of MapView
+        // Location of Smart Parking Lot
         let location = CLLocationCoordinate2D(latitude: 32.607437, longitude: -85.480376)
         
-        // Controlls inital Size
+        // Controls Sized
         let span = MKCoordinateSpanMake(0.0005, 0.0005)
         let region = MKCoordinateRegion(center: location, span: span)
+        
+        // View Type
         mapView.mapType = MKMapType.Satellite
         mapView.setRegion(region, animated: true)
-        let annotation = MKPointAnnotation()
-        spots = getSpots()
-        var annotations = Array<MKPointAnnotation>()
-        for spot in spots{
-            let annotation = MKPointAnnotation()
-            println(spot.y_coord.doubleValue)
-            let spotcoords = CLLocationCoordinate2D(latitude: spot.y_coord.doubleValue, longitude: spot.x_coord.doubleValue)
-            annotation.coordinate = spotcoords
-            annotation.title = spot.stallnumber.stringValue
-            annotation.subtitle = "Open"
-            annotations.append(annotation)
-        }
-        println(annotations.count)
-        mapView.addAnnotations(annotations)
-        AuburnImport.get(self.view)
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return spots.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
-            let spot = spots[indexPath.row]
-            cell.textLabel!.text = spot.stallnumber.stringValue
-            return cell
-        
+        mapView.addAnnotations(Annotations.currentAnnotations())
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,20 +41,8 @@ class ViewController: UIViewController{
         println("ViewWillAppear")
     }
     
-    func getSpots() -> Array<CityOfAuburn> {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        let fetchrequest = NSFetchRequest(entityName: "CityOfAuburn")
-        let predicate = NSPredicate(format: "occupied == NO")
-        var error: NSError?
-        fetchrequest.predicate = predicate
-        let fetchedResults = managedContext.executeFetchRequest(fetchrequest, error: &error) as [CityOfAuburn]?
-        if let results = fetchedResults {
-            println(results.count)
-            spots = results
-        }
-        
-    return spots
+    func updateMap(){
+        println("triggered")
     }
     
 }

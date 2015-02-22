@@ -16,7 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // Inital refresh on load and statup of timer
+        AuburnImport.get()
+        
+        NSTimer.scheduledTimerWithTimeInterval(30, target: ViewController(), selector:Selector("updateMap"), userInfo: nil, repeats: true)
+        
         return true
     }
 
