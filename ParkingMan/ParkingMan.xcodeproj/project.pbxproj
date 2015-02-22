@@ -18,6 +18,8 @@
 		054761AD1A98FB580064A937 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054761AC1A98FB580064A937 /* SwiftyJSON.swift */; };
 		054761AF1A991C080064A937 /* CityOfAuburn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054761AE1A991C080064A937 /* CityOfAuburn.swift */; };
 		054761B11A9A36720064A937 /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054761B01A9A36720064A937 /* Annotations.swift */; };
+		054761B31A9A6A080064A937 /* OtherLots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054761B21A9A6A080064A937 /* OtherLots.swift */; };
+		054761B51A9A6A4D0064A937 /* OtherLotsImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054761B41A9A6A4D0064A937 /* OtherLotsImport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		054761AC1A98FB580064A937 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		054761AE1A991C080064A937 /* CityOfAuburn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityOfAuburn.swift; sourceTree = "<group>"; };
 		054761B01A9A36720064A937 /* Annotations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotations.swift; sourceTree = "<group>"; };
+		054761B21A9A6A080064A937 /* OtherLots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLots.swift; sourceTree = "<group>"; };
+		054761B41A9A6A4D0064A937 /* OtherLotsImport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLotsImport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +98,11 @@
 				054761911A98DC520064A937 /* Images.xcassets */,
 				054761931A98DC520064A937 /* LaunchScreen.xib */,
 				054761891A98DC520064A937 /* ParkingMan.xcdatamodeld */,
+				054761B21A9A6A080064A937 /* OtherLots.swift */,
 				054761AE1A991C080064A937 /* CityOfAuburn.swift */,
 				054761851A98DC520064A937 /* Supporting Files */,
 				054761AA1A98E13A0064A937 /* AuburnImport.swift */,
+				054761B41A9A6A4D0064A937 /* OtherLotsImport.swift */,
 				054761B01A9A36720064A937 /* Annotations.swift */,
 			);
 			path = ParkingMan;
@@ -234,6 +240,8 @@
 				054761881A98DC520064A937 /* AppDelegate.swift in Sources */,
 				054761AD1A98FB580064A937 /* SwiftyJSON.swift in Sources */,
 				054761B11A9A36720064A937 /* Annotations.swift in Sources */,
+				054761B51A9A6A4D0064A937 /* OtherLotsImport.swift in Sources */,
+				054761B31A9A6A080064A937 /* OtherLots.swift in Sources */,
 				0547618B1A98DC520064A937 /* ParkingMan.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

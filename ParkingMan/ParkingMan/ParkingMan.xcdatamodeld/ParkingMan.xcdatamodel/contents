@@ -12,7 +12,14 @@
         <attribute name="x_coord" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="y_coord" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
+    <entity name="OtherLots" representedClassName="ParkingMan.OtherLots" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cost" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="provider" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spots" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
     <elements>
         <element name="CityOfAuburn" positionX="-63" positionY="-18" width="128" height="193"/>
+        <element name="OtherLots" positionX="-54" positionY="63" width="128" height="103"/>
     </elements>
 </model>
