@@ -10,6 +10,9 @@ import Foundation
 import CoreData
 import UIKit
 @objc(CityOfAuburn)
+protocol updateProto {
+    func updateTrigger()
+}
 
 class AuburnImport: NSObject{
     
@@ -26,7 +29,7 @@ class AuburnImport: NSObject{
     }
     
     // Assync pull of City Of Auburn smart parking data
-    class func get(){
+    class func get(vc: ViewController){
         
         // Variable Setup
         var url: NSURL = NSURL(string: vars.auburnURL)!
@@ -37,6 +40,10 @@ class AuburnImport: NSObject{
         NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             var err: NSError
             AuburnImport.CoreDataImport(data)
+            dispatch_async(dispatch_get_main_queue(), {
+                vc.updateTrigger()
+                return
+            });
         })
         
         println("City of Auburn JSON Pulled")

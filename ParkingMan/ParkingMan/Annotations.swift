@@ -30,6 +30,7 @@ class Annotations{
             annotations.append(annotation)
         }
         
+        println("Annotations Pulled")
         return annotations
     }
 }
