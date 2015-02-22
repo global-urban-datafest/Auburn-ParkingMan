@@ -25,6 +25,12 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="UI2-03-1lo"/>
                                 </connections>
                             </mapView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8kA-20-19E">
+                                <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="800" height="736"/>
+                                </variation>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -40,7 +46,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="KxL-UG-KXY"/>
                     <connections>
-                        <outlet property="mapView" destination="RHI-UY-zNE" id="ObA-SU-9yN"/>
+                        <outlet property="mapView" destination="8kA-20-19E" id="B3G-4f-qIl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
