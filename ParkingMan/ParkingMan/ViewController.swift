@@ -7,16 +7,39 @@
 //
 
 import UIKit
+import MapKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDataSource {
-    @IBOutlet weak var tableView: UITableView!
+class ViewController: UIViewController{
+    @IBOutlet weak var mapView: MKMapView!
+    
     var spots = [CityOfAuburn]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "List of Auburn Spots"
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        // Location of smart parking deck
+        let location = CLLocationCoordinate2D(latitude: 32.607437, longitude: -85.480376)
+        
+        // Controlls inital Size
+        let span = MKCoordinateSpanMake(0.0005, 0.0005)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.mapType = MKMapType.Satellite
+        mapView.setRegion(region, animated: true)
+        let annotation = MKPointAnnotation()
+        spots = getSpots()
+        var annotations = Array<MKPointAnnotation>()
+        for spot in spots{
+            let annotation = MKPointAnnotation()
+            println(spot.y_coord.doubleValue)
+            let spotcoords = CLLocationCoordinate2D(latitude: spot.y_coord.doubleValue, longitude: spot.x_coord.doubleValue)
+            annotation.coordinate = spotcoords
+            annotation.title = spot.stallnumber.stringValue
+            annotation.subtitle = "Open"
+            annotations.append(annotation)
+        }
+        println(annotations.count)
+        mapView.addAnnotations(annotations)
         AuburnImport.get(self.view)
     }
     
@@ -40,24 +63,22 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     override func viewWillAppear(animated: Bool) {
         println("ViewWillAppear")
-        refreshdata()
     }
     
-    func reload(){
-        refreshdata()
-        tableView.reloadData()
-        }
-    
-    func refreshdata(){
+    func getSpots() -> Array<CityOfAuburn> {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let fetchrequest = NSFetchRequest(entityName: "CityOfAuburn")
+        let predicate = NSPredicate(format: "occupied == NO")
         var error: NSError?
+        fetchrequest.predicate = predicate
         let fetchedResults = managedContext.executeFetchRequest(fetchrequest, error: &error) as [CityOfAuburn]?
         if let results = fetchedResults {
             println(results.count)
             spots = results
         }
+        
+    return spots
     }
     
 }

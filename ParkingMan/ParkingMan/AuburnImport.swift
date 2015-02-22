@@ -54,7 +54,7 @@ class AuburnImport: NSObject{
             spot.occupidetime = dateFormatter.dateFromString(subJson["OccupiedTime"].string!)!
             spot.occupied = subJson["Occupied"].boolValue
             spot.x_coord = subJson["X_Coord"].doubleValue
-            spot.y_coord = subJson["Y_Corrd"].doubleValue
+            spot.y_coord = subJson["Y_Coord"].doubleValue
             spot.stalltype = subJson["StallType"].string!
             
         }

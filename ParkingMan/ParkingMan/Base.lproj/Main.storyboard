@@ -16,33 +16,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Sv1-8V-mkL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RHI-UY-zNE">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="64" width="400" height="800"/>
                                 </variation>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Rga-vj-bk8"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="4NG-kh-tDI"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="UI2-03-1lo"/>
                                 </connections>
-                            </tableView>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="Sv1-8V-mkL"/>
+                                <exclude reference="RHI-UY-zNE"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="Sv1-8V-mkL"/>
+                                <include reference="RHI-UY-zNE"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="KxL-UG-KXY"/>
                     <connections>
-                        <outlet property="tableView" destination="Sv1-8V-mkL" id="Zcy-70-GrK"/>
+                        <outlet property="mapView" destination="RHI-UY-zNE" id="ObA-SU-9yN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
